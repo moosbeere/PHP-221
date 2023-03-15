@@ -1,8 +1,8 @@
 <?php
 
-// echo sum(10,2);// вызов функции 
-// echo '<br>';
-// echo div($a,2);
+echo sum(10,2);// вызов функции 
+echo '<br>';
+echo div($a,2);
 
 
 foreach ($GLOBALS as $key=>$glob){
