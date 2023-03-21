@@ -1,24 +1,36 @@
 <?php
+if (isset($_GET['name'], $_GET['age'])){
+    echo 'Ваше имя: '.$_GET['name'].'<br>';
+    echo 'Ваш возраст: '.$_GET['age'];
+}else echo "Недостаточно входных параметров<br>";
 
-echo sum(10,2);// вызов функции 
-echo '<br>';
-echo div($a,2);
-
-
-foreach ($GLOBALS as $key=>$glob){
-    // echo $key .' = '.$glob.'<br>';
-}
-
-function sum($a, $b){//объявление функции
-    global $a;
-    $a = 30;
-    return $a;
-}
+if (!empty($_POST['name'] && $_POST['email'])){
+    echo 'Ваше имя: '.$_POST['name'].'<br>';
+    echo 'Ваш email: '.$_POST['email'];
+}else echo 'Вы не ввели значения';
 
 
-function div($a, $b){
-    return $a/$b;
-}
+
+
+// echo sum(10,2);// вызов функции 
+// echo '<br>';
+// echo div($a,2);
+
+
+// foreach ($GLOBALS as $key=>$glob){
+//     // echo $key .' = '.$glob.'<br>';
+// }
+
+// function sum($a, $b){//объявление функции
+//     global $a;
+//     $a = 30;
+//     return $a;
+// }
+
+
+// function div($a, $b){
+//     return $a/$b;
+// }
 
     
 
