@@ -27,8 +27,11 @@
     // $cat->setColor('grey');
     // $cat->setName('Murka');
     $cat->sayHello();
-    echo $cat->getName();
+    // echo $cat->getName();
     // var_dump($cat);
 
     $cat1 = new Cat("Barsik", "black");
-    var_dump($cat1);
+    // var_dump($cat1);
+
+    // $x = 3;
+    if (isset($x)) echo "ok"; else echo 'no';
