@@ -1,9 +1,13 @@
+<?php
+    if (isset($name)) $style = '../../templates/css/style.css';
+    else $style = '../templates/css/style.css';
+?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Мой блог</title>
-    <link rel="stylesheet" href="templates/css/style.css">
+    <link rel="stylesheet" href="<?=$style;?>">
 </head>
 <body>
 
