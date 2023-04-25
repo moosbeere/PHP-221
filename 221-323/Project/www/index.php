@@ -9,15 +9,21 @@
 
     $isRouteFound = false;
     foreach($routes as $pattern => $controllerAndAction){
-        if (preg_match($pattern, $route, $matches))
+        preg_match($pattern, $route, $matches);
+        if (!empty($matches)){
             $isRouteFound = true;
             break;
+        }
     }
+    if ($isRouteFound){
+        unset($matches[0]);
+        $controllerName = $controllerAndAction[0];
+        $actionName = $controllerAndAction[1];
+        $controller = new $controllerName;
+        $controller->$actionName(...$matches);
+    }else echo 'Страница не найдена!';
 
-    $controllerName = $controllerAndAction[0];
-    $actionName = $controllerAndAction[1];
-    $controller = new $controllerName;
-    $controller->$actionName();
+    
     // var_dump($controllerAndAction);
 
     // $pattern = '~^hello/(.*)$~';
