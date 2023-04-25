@@ -16,12 +16,12 @@
             break;
         }    
     }
-
     if (!$isRouteFound) {
         echo "Страница не найдена";
         return;
     }
 
+    unset($matches[0]);
     $controllerName = $controllerAndAction[0];
     $actionName = $controllerAndAction[1];
 

@@ -3,25 +3,29 @@
     use Models\Users\User;
 
     class Article{
-        private $title;
+        private $id;
+        private $authorId;
+        private $name;
         private $text;
-        private $author;
+        private $createdAt;
 
-        public function __construct(string $title, string $text, User $author){
-            $this->title = $title;
-            $this->text = $text;
-            $this->author = $author;
-        }
-        public function getTitle():string
-        {
-            return $this->title;
-        }
-        public function getText():string
-        {
-            return $this->text;
-        }
-        public function getAuthor():User
-        {
-            return $this->author;
-        }
+       public function __set($name, $value){
+        $camelCaseName = $this->underScoreToCamelCase($name);
+        $this->$camelCaseName = $value;
+        // echo "Я пытаюсь создать свойство $name со значением $value<br>";
+       }
+
+       private function underScoreToCamelCase(string $str){
+        return lcfirst(str_replace('_', '', ucwords($str, '_')));
+       }
+
+       public function getId(){
+        return $this->id;
+       }
+       public function getText(){
+        return $this->text;
+       }
+       public function getName(){
+        return $this->name;
+       }
     }
