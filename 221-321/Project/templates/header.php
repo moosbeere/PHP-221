@@ -8,7 +8,7 @@
 
     <title>Мой блог</title>
 
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="/student-221/221-321/Project/templates/style/style.css">
 
 </head>
 
