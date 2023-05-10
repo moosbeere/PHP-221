@@ -3,6 +3,7 @@
 namespace Controllers;
 use View\View;
 use Services\Db;
+use Models\Articles\Article;
 
 class MainController{
     private $view;
@@ -15,8 +16,8 @@ class MainController{
 
     public function main(){
 
-        $sql = "SELECT * FROM `articles`";
-        $articles = $this->db->query($sql);
+        $articles = Article::findAll();
+        // var_dump($articles[0]);
         // $articles = [
         //     ['title'=>'Статья 1', 'text'=>'Всем привет, это текст первой статьи'],
         //     ['title'=>'Статья 2', 'text'=>'Всем привет, это текст второй статьи'],

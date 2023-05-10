@@ -2,6 +2,7 @@
 namespace Controllers;
 use View\View;
 use Services\Db;
+use Models\Articles\Article;
 
 class ArticleController{
 
@@ -14,8 +15,8 @@ class ArticleController{
     }
 
     public function show(int $id){
-        $sql = "SELECT * FROM `articles` WHERE `id`=$id";
-        $article = $this->db->query($sql);
-        $this->view->renderHtml('article/show.php', ['article' => $article[0]]);
+  
+        $article = Article::getById($id);
+        $this->view->renderHtml('article/show.php', ['article' => $article]);
     }
 }
