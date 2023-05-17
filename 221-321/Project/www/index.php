@@ -16,7 +16,8 @@ foreach($routes as $pattern=>$controllerAndAction){
     }
 }
 if (!$isRouteFound){
-    echo 'Страница не найдена';
+    $view = new View\View(__DIR__.'/../templates');
+    $view->renderHtml('errors/404.php', [], 404);   
     return;
 }
 

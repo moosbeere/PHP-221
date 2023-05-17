@@ -3,7 +3,6 @@ namespace Models\Articles;
 use Models\Users\User;
 use Services\Db;
 use Models\ActiveRecordEntity;
-use Models\Users\User;
 
 class Article extends ActiveRecordEntity{
     protected $authorId;
@@ -20,6 +19,18 @@ class Article extends ActiveRecordEntity{
     }
     public function getText(){
         return $this->text;
+    }
+
+    public function setTitle(string $title){
+        $this->title = $title;
+    }
+
+    public function setText(string $text){
+        $this->text = $text;
+    }
+
+    public function setAuthorId(int $id){
+        $this->authorId = $id;
     }
 
     public static function getTableName(): string
