@@ -21,7 +21,11 @@
         $actionName = $controllerAndAction[1];
         $controller = new $controllerName;
         $controller->$actionName(...$matches);
-    }else echo 'Страница не найдена!';
+    }else {
+        $view = new View\View('../templates');
+        $view->renderHtml('errors/error.php', [], 404);
+        return;
+    }
 
     
     // var_dump($controllerAndAction);

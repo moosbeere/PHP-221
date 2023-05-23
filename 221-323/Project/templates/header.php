@@ -7,7 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Мой блог</title>
-    <link rel="stylesheet" href="<?=$style;?>">
+    <link rel="stylesheet" href="/student-221/221-323/Project/templates/css/style.css">
+    <!-- D:\XAMPP\htdocs\student-221\221-323\Project\templates\css\style.css -->
 </head>
 <body>
 

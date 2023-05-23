@@ -1,6 +1,7 @@
 <?php
     namespace Controllers;
     use View\View;
+    use Models\Articles\Article;
 
     class MainController{
 
@@ -11,12 +12,8 @@
         }
 
         public function main(){
-            $articles = [
-                ['name'=>'Статья 1', 'text'=>"Text 1"],
-                ['name'=>'Статья 2', 'text'=>"Text 2"],
-            ];
+            $articles = Article::findAll();
             $this->view->renderHtml("main/main.php", ['articles' => $articles]);
-            // include(__DIR__."/../../templates/main/main.php");
         }
 
         public function sayHello(string $name){
