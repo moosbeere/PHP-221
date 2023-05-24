@@ -29,8 +29,8 @@ class Article extends ActiveRecordEntity{
         $this->text = $text;
     }
 
-    public function setAuthorId(int $id){
-        $this->authorId = $id;
+    public function setAuthorId(User $author){
+        $this->authorId = $author->getId();
     }
 
     public static function getTableName(): string

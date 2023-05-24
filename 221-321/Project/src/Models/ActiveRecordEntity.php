@@ -36,7 +36,19 @@
     
         public function insert(array $mappedProperties):void
         {
-            //
+            $columns = [];
+            $params2values = [];
+            $paramNames = [];
+            $filterProperties = array_filter($mappedProperties);
+            foreach ($filterProperties as $column => $value){
+                $columns[] = '`'.$column.'`';
+                $paramName = ':'.$column;
+                $paramNames[] = $paramName;
+                $params2values[$paramName] = $value;
+            }
+            $sql = 'INSERT INTO `'.static::getTableName().'` ('.implode(',', $columns).') VALUES ('.implode(',', $paramNames).')';
+            $db = Db::getInstance();
+            $res = $db->query($sql, $params2values, static::class);
         }
 
         public function update(array $mappedProperties):void
@@ -76,6 +88,12 @@
                 $mappedProperties[$propertyUnderscore] = $this->$propertyName;
             }
             return $mappedProperties;
+        }
+
+        public function destroy(){
+            $sql = 'DELETE FROM `'.static::getTableName().'` WHERE id=:id';
+            $db = Db::getInstance();
+            $db->query($sql, [':id' => $this->id], static::class);
         }
 
        abstract protected static function getTableName(): string;

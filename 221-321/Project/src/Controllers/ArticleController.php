@@ -3,6 +3,7 @@ namespace Controllers;
 use View\View;
 use Services\Db;
 use Models\Articles\Article;
+use Models\Users\User;
 
 class ArticleController{
 
@@ -26,12 +27,24 @@ class ArticleController{
         
     }
 
+    public function create(){
+        $users = User::findAll();
+        $this->view->renderHtml('article/create.php', ['users' => $users]);
+    }
+
+    public function store(){
+        $author = User::getbyId($_POST['author']);
+        $article = new Article();
+        $article->setAuthorId($author);
+        $article->setText($_POST['title']);
+        $article->setTitle($_POST['text']);
+        $res = $article->save();
+        // $this->show(34);
+    }
+
     public function edit(int $id){
         $article = Article::getById($id);
         $this->view->renderHtml('article/edit.php', ['article' => $article]);
-        // $article->setTitle('new title');
-        // $article->setText('new text');
-        // $article->save();
     }
 
     public function update(int $id){
@@ -41,5 +54,12 @@ class ArticleController{
         // $article->setAuthorId($_POST['author']);
         $article->save();
         $this->show($id);
+    }
+
+    public function delete(int $id){
+        $article = Article::getById($id);
+        $article->destroy();
+        $article->id = null;
+        header("article/show/34");
     }
 }
