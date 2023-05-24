@@ -1,31 +1,39 @@
 <?php
     namespace Models\Articles;
     use Models\Users\User;
+    use Models\ActiveRecordEntity;
 
-    class Article{
-        private $id;
-        private $authorId;
-        private $name;
-        private $text;
-        private $createdAt;
+    class Article extends ActiveRecordEntity{
+        protected $authorId;
+        protected $name;
+        protected $text;
+        protected $createdAt;
 
-       public function __set($name, $value){
-        $camelCaseName = $this->underScoreToCamelCase($name);
-        $this->$camelCaseName = $value;
-        // echo "Я пытаюсь создать свойство $name со значением $value<br>";
-       }
-
-       private function underScoreToCamelCase(string $str){
-        return lcfirst(str_replace('_', '', ucwords($str, '_')));
-       }
-
-       public function getId(){
-        return $this->id;
-       }
-       public function getText(){
+        public function getText(){
         return $this->text;
        }
        public function getName(){
         return $this->name;
+       }
+
+       public function setName(string $name){
+        $this->name= $name;
+       }
+
+       public function setText(string $text){
+        $this->text= $text;
+       }
+
+       public function setAuthorId(User $author){
+        $this->authorId = $author->getId();
+       }
+
+       public function getAuthorId(): User
+       {
+        return User::getById($this->authorId);
+       }
+
+       protected static function getTableName():string{
+        return 'articles';
        }
     }

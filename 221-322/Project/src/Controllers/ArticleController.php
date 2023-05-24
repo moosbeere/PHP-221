@@ -1,24 +1,53 @@
 <?php
 namespace Controllers;
 use View\View;
-use Services\Db;
 use Models\Articles\Article;
+use Models\Users\User;
 
 class ArticleController{
     private $view;
-    private $db;
 
     public function __construct(){
         $this->view = new View("__DIR__.'/../../templates");
-        $this->db = new Db();
+    }
+
+    public function store(){
+        $article = new Article();
+        $author = User::getById(1);
+        $article->setAuthorId($author);
+        $article->setName('new title2');
+        $article->setText('new text2');
+        $article->save();
     }
 
     public function show(int $id){
-        $result = $this->db->query('SELECT * FROM `articles` WHERE `id`=:id', [':id'=>$id], Article::class);
+        $result = Article::getById($id);
         if (empty($result)){
             $this->view->renderHtml('errors/404.php',[],404); 
             return;
         }     
-        $this->view->renderHtml('articles/show.php', ['article'=>$result[0]]);
+        $this->view->renderHtml('articles/show.php', ['article'=>$result]);
+    }
+
+    public function edit(int $id){
+        $article = Article::getById($id);
+        $this->view->renderHtml('articles/edit/php', ['article' => $article]);
+    }
+
+    public function update($id){
+        $article = Article::getById($id);
+        $article->setName($_POST['name']);
+        $article->setText($_POST['text']);
+        $article->save();
+    }
+
+    public function add(){
+        $this->view->renderHtml('articles/add.php');
+    }
+
+    public function delete(int $id){
+        $article = Article::getById($id);
+        $article->destroy();
+
     }
 }
