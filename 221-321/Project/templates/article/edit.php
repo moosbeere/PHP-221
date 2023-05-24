@@ -4,7 +4,8 @@
 <div class="container">
     <input type="text" name="title" id="" value =<?=$article->getTitle();?> >
     <input type="text" name="text" id="" value =<?=$article->getText();?> >
-    <input type="text" name="author" id="" value =<?=$article->getAuthorId()->getNickname();?> >
+    <input type="text" name="author" id="" value =<?=$article->getAuthorId()->getNickname();?>>
+    <input type="hidden" name="id_author" value=<?=$article->getAuthorId()->getId();?>>
     <button type="submit">Обновить</button>
 </div>
     

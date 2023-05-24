@@ -1,6 +1,7 @@
 <?php
     namespace Models;
     use Services\Db;
+   
 
     abstract class ActiveRecordEntity{
         protected $id;
@@ -25,6 +26,12 @@
         {
             $db = Db::getInstance();
             return $db->query('SELECT * FROM `'.static::getTableName().'`', [], static::class);
+        }
+
+        public static function findAllWhere(string $columnName, int $id): ?array
+        {
+            $db = Db::getInstance();
+            return $db->query('SELECT * FROM `'.static::getTableName().'` WHERE `'.$columnName.'`=:id', [':id'=>$id], static::class);
         }
 
         public function save()
