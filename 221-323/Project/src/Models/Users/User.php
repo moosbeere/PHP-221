@@ -4,7 +4,6 @@ namespace Models\Users;
 use Models\ActiveRecordEntity;
 
     class User extends ActiveRecordEntity{
-        protected $id;
         protected $email;
         protected $nickname;
         protected $isConfirmed;
@@ -13,7 +12,7 @@ use Models\ActiveRecordEntity;
         protected $authToken;
         protected $createdAt;
 
-        public function getNickname(){
+        public function getNickName(){
             return $this->nickname;
         }
 

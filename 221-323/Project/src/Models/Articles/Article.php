@@ -15,14 +15,21 @@ class Article extends ActiveRecordEntity{
     public function getText(){
         return $this->text;
     }
-
     protected static function getTableName():string 
     {
         return 'articles';
     }
-    
     public function getAuthorId(): User
     {
         return User::getById($this->authorId);
+    }
+    public  function setName(string $name){
+        $this->name = $name;
+    }
+    public  function setText(string $text){
+        $this->text = $text;
+    }
+    public  function setAuthorId(User $user){
+        $this->authorId = $user->getId();
     }
 }
